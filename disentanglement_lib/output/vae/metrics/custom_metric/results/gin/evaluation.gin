@@ -1,0 +1,14 @@
+# Parameters for custom_metric:
+# ==============================================================================
+custom_metric.batch_size = 16
+custom_metric.num_train = 100
+
+# Parameters for dataset:
+# ==============================================================================
+dataset.name = 'scatt'
+
+# Parameters for evaluation:
+# ==============================================================================
+evaluation.evaluation_fn = @custom_metric
+evaluation.name = ''
+evaluation.random_seed = 0

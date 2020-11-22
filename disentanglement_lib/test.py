@@ -10,6 +10,7 @@ from disentanglement_lib.methods.unsupervised import vae
 from disentanglement_lib.postprocessing import postprocess
 from disentanglement_lib.utils import aggregate_results
 from disentanglement_lib.visualize import visualize_dataset
+from disentanglement_lib.visualize import visualize_model
 import tensorflow.compat.v1 as tf
 import os
 from numpy import loadtxt
@@ -33,7 +34,7 @@ representation_path = os.path.join(path_vae, "representation")
 model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
-postprocess.postprocess_with_gin(model_path, representation_path, overwrite,ostprocess_gin)
+postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
 
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
@@ -126,3 +127,5 @@ aggregate_results.aggregate_results_to_json(
 # metric always returns 1.
 model_results = aggregate_results.load_aggregated_json_results(results_path)
 print(model_results)
+
+
