@@ -15,7 +15,7 @@ import os
 from numpy import loadtxt
 
 
-path = os.getcwd()
+path = "/content/Thesis/disentanglement_lib"
 print(path)
 path_output = os.path.join(path, "output")
 path_vae = os.path.join(path_output, "vae")
