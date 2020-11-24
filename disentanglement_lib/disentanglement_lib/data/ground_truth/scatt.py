@@ -37,9 +37,9 @@ class Scatt(ground_truth_data.GroundTruthData):
   The data set was originally introduced in "Disentangling by Factorising".
 
   The ground-truth factors of variation are:
-  0 - shape(6 different values)
-  1 - size(10 different values)
-  2 - color (7 different values)
+  0 - size(15 different values)
+  1 - shape(9 different values)
+  2 - color (10 different values)
   """
 
   def __init__(self):
@@ -57,7 +57,7 @@ class Scatt(ground_truth_data.GroundTruthData):
     self.images = (
         images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
     features = labels.reshape([count, 3])
-    self.factor_sizes = [6, 10, 7]
+    self.factor_sizes = [15, 9, 10]
     self.latent_factor_indices = list(range(3))
     self.num_total_factors = features.shape[1]
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
