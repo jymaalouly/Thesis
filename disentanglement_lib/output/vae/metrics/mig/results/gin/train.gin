@@ -44,7 +44,7 @@ model.model = @vae()
 model.model_num = None
 model.name = ''
 model.random_seed = 0
-model.training_steps = 20000
+model.training_steps = 50000
 
 # Parameters for reconstruction_loss:
 # ==============================================================================
