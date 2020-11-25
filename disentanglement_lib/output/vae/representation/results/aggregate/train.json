@@ -1,12 +1,4 @@
 {
-  "train_results.elbo": -658.1166381835938,
-  "train_results.kl_loss": 3.5120248794555664,
-  "train_results.loss": 668.6529541015625,
-  "train_results.reconstruction_loss": 654.6044311523438,
-  "train_results.regularizer": 14.048099517822266,
-  "train_results.global_step": 10000,
-  "train_results.elapsed_time": 886.2592675685883,
-  "train_results.uuid": "fc0f1376-c0fa-404b-9ec2-963caea328b5",
   "train_config.AdamOptimizer.beta1": "0.9",
   "train_config.AdamOptimizer.beta2": "0.999",
   "train_config.AdamOptimizer.epsilon": "1e-08",
@@ -25,10 +17,18 @@
   "train_config.model.model_num": "None",
   "train_config.model.name": "''",
   "train_config.model.random_seed": "0",
-  "train_config.model.training_steps": "10000",
+  "train_config.model.training_steps": "20000",
   "train_config.reconstruction_loss.activation": "'logits'",
   "train_config.reconstruction_loss.loss_fn": "@bernoulli_loss",
   "train_config.vae.beta": "4",
   "train_config.vae_optimizer.learning_rate": "None",
-  "train_config.vae_optimizer.optimizer_fn": "@AdamOptimizer"
+  "train_config.vae_optimizer.optimizer_fn": "@AdamOptimizer",
+  "train_results.elbo": -560.57080078125,
+  "train_results.kl_loss": 4.172794342041016,
+  "train_results.loss": 573.089111328125,
+  "train_results.reconstruction_loss": 556.398193359375,
+  "train_results.regularizer": 16.691177368164062,
+  "train_results.global_step": 20000,
+  "train_results.elapsed_time": 1830.2258026599884,
+  "train_results.uuid": "9c1376a2-8530-4a1b-94e7-30ccf1b2cd45"
 }

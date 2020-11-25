@@ -37,9 +37,9 @@ class Scatt(ground_truth_data.GroundTruthData):
   The data set was originally introduced in "Disentangling by Factorising".
 
   The ground-truth factors of variation are:
-  0 - size(23 different values)
+  0 - size(30 different values)
   1 - shape(16 different values)
-  2 - color (20 different values)
+  2 - color (50 different values)
   """
 
   def __init__(self):
@@ -53,18 +53,16 @@ class Scatt(ground_truth_data.GroundTruthData):
         
     images = np.array(join)
     labels = genfromtxt(SCATT_PATH + '/output.csv', delimiter=',')
-    n_samples = np.prod(images.shape[0:6])
     self.images = (
         images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
     features = labels.reshape([count, 3])
-    self.factor_sizes = [23, 16, 20]
+    self.factor_sizes = [30, 16, 50]
     self.latent_factor_indices = list(range(3))
     self.num_total_factors = features.shape[1]
+    self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
                                                     self.latent_factor_indices)
-    self.factor_bases = np.prod(self.factor_sizes) / np.cumprod(
-        self.factor_sizes)
-
+    
   @property
   def num_factors(self):
     return self.state_space.num_latent_factors
@@ -78,11 +76,13 @@ class Scatt(ground_truth_data.GroundTruthData):
     return [64, 64, 3]
 
 
+
   def sample_factors(self, num, random_state):
     """Sample a batch of factors Y."""
     return self.state_space.sample_latent_factors(num, random_state)
 
   def sample_observations_from_factors(self, factors, random_state):
+    """Sample a batch of observations X given a batch of factors Y."""
     all_factors = self.state_space.sample_all_factors(factors, random_state)
-    indices = np.array(np.dot(all_factors, self.factor_bases), dtype=np.int64)
-    return self.images[indices]
+    indices = self.index.features_to_index(all_factors)
+    return self.images[indices].astype(np.float32)

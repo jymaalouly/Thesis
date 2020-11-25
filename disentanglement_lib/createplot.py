@@ -13,17 +13,17 @@ output = "/content/Thesis/disentanglement_lib/data/"
 
 # number of data points
 
-num_data_points = 10
+num_data_points = 5
 marker = ["o","s","v","p","P","*","h","H","X","D","d","^","<",">","8",'$...$']
 
-evenly_spaced_interval = np.linspace(0, 1, 20)
+evenly_spaced_interval = np.linspace(0, 1, 50)
 colors = [cm.rainbow(x) for x in evenly_spaced_interval]
 graph_features = pd.DataFrame(columns=['size' , 'shape','color'])
 # draw the plot
 
 x = [random.gauss(0.5, 0.25)  for i in range(num_data_points)]
 y = [random.gauss(0.5, 0.25) for i in range(num_data_points)]
-for b in range(1,2401):
+for b in range(1,3001):
     if (b % 100) == 0 :
         for i, d in enumerate(colors):
           for c in range(len(marker)):

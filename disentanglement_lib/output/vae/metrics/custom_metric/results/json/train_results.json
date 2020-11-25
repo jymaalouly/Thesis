@@ -1,10 +1,10 @@
 {
-  "elbo": -658.1166381835938,
-  "kl_loss": 3.5120248794555664,
-  "loss": 668.6529541015625,
-  "reconstruction_loss": 654.6044311523438,
-  "regularizer": 14.048099517822266,
-  "global_step": 10000,
-  "elapsed_time": 886.2592675685883,
-  "uuid": "fc0f1376-c0fa-404b-9ec2-963caea328b5"
+  "elbo": -560.57080078125,
+  "kl_loss": 4.172794342041016,
+  "loss": 573.089111328125,
+  "reconstruction_loss": 556.398193359375,
+  "regularizer": 16.691177368164062,
+  "global_step": 20000,
+  "elapsed_time": 1830.2258026599884,
+  "uuid": "9c1376a2-8530-4a1b-94e7-30ccf1b2cd45"
 }
