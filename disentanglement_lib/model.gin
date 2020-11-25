@@ -18,7 +18,7 @@ dataset.name = "scatt"
 model.batch_size = 16
 model.model = @vae()
 model.random_seed = 0
-vae.beta = 4
+vae.beta = 16
 encoder.num_latent = 3
 vae_optimizer.optimizer_fn = @AdamOptimizer
 # We train for only 5 steps, in practice we train for 300000 steps.
@@ -33,3 +33,4 @@ AdamOptimizer.use_locking = False
 encoder.encoder_fn = @conv_encoder
 decoder.decoder_fn = @deconv_decoder
 reconstruction_loss.loss_fn = @bernoulli_loss
+

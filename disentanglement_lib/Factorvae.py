@@ -27,8 +27,9 @@ model = ["model.gin"]
 path = os.path.join(path_vae, "model")
 
 gin_bindings = [
-"model.model = @factor_vae()"
-"annealed_vae.gamma =10"
+"model.model = @factor_vae()",
+"factor_vae.gamma =10",
+"discriminator.discriminator_fn = @discriminator()"
 ]
 
 

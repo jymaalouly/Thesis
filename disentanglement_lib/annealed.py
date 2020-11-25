@@ -27,10 +27,10 @@ model = ["model.gin"]
 path = os.path.join(path_vae, "model")
 
 gin_bindings = [
-"model.model = @annealed_vae()"
-"annealed_vae.gamma =1000" 
-"annealed_vae.c_max =5"
-"annealed_vae.iteration_threshold =100000"
+"model.model = @annealed_vae()",
+"annealed_vae.gamma =1000" ,
+"annealed_vae.c_max =20",
+"annealed_vae.iteration_threshold =100000",
 ]
 
 
