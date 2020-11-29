@@ -66,7 +66,7 @@ def tanh(x):
 def latent_traversal_1d_multi_dim(generator_fn,
                                   latent_vector,
                                   dimensions=None,
-                                  values=None,
+                                  values=2,
                                   transpose=False):
   if latent_vector.ndim != 1:
     raise ValueError("Latent vector needs to be 1-dimensional.")
@@ -99,11 +99,14 @@ def latent_traversal_1d_multi_dim(generator_fn,
   # Numpy arrays. We do not preallocate a single final Numpy array as this code
   # is not performance critical and as it reduces code complexity.
   num_values = len(values)
+
+
   row_or_columns = []
   for dimension in dimensions:
     # Creates num_values copy of the latent_vector along the first axis.
     latent_traversal_vectors = np.tile(latent_vector, [num_values, 1])
     # Intervenes in the latent space.
+
     latent_traversal_vectors[:, dimension] = values
     # Generate the batch of images
     images = generator_fn(latent_traversal_vectors)
@@ -155,7 +158,7 @@ with hub.eval_function_for_module(module_path) as f:
   num_latent = int(gin_dict["encoder.num_latent"])
   num_pics = 32
   
-  img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-5-1.png")# convert to array
+  img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-4-2.png")# convert to array
   img_array = img_array.reshape([1, 64, 64, 3]).astype(np.float32) / 255. # add this to our training_data
   random_codes = random_state.normal(0, 1, [1, 3])
   print(random_codes)
@@ -173,17 +176,18 @@ with hub.eval_function_for_module(module_path) as f:
   means = result["mean"]
   logvars = result["logvar"]
   
+
   pics = activation(
       latent_traversal_1d_multi_dim(_decoder, means[0, :], None))
   file_name = os.path.join(results_dir, "traversals{}.jpg".format(0))
   visualize_util.grid_save_images([pics], file_name)
-
-  #img = Image.fromarray(pics.reshape([64, 64, 3]), 'RGB')
-  #img.save('/content/Thesis/disentanglement_lib/my.png')
-  #img.show()
   
-
-  #visualize_util.save_image([pics], "/content/Thesis/disentanglement_lib/test")
+  print(random_codes.shape)
+  print(means)
+  pics = activation(_decoder(means))
+  results_dir = os.path.join(output_dir, "sampled")
+  visualize_util.grid_save_images(pics,"/content/Thesis/disentanglement_lib/test/sampled/test.jpg")
 
 gin.clear_config()
 
+#[[ 0.26510307 -1.3585733  -1.0175796 ]]

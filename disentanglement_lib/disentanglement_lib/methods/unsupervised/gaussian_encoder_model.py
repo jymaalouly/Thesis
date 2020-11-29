@@ -107,6 +107,9 @@ def export_as_tf_hub(gaussian_encoder_model,
           inputs={"latent_vectors": latent_placeholder},
           outputs={"images": decoded_images})
 
+
+
+
   # Export the module.
   # Two versions of the model are exported:
   #   - one for "test" mode (the default tag)
