@@ -17,10 +17,10 @@
   "model.model_num": "None",
   "model.name": "''",
   "model.random_seed": "0",
-  "model.training_steps": "50000",
+  "model.training_steps": "100000",
   "reconstruction_loss.activation": "'logits'",
   "reconstruction_loss.loss_fn": "@bernoulli_loss",
-  "vae.beta": "4",
+  "vae.beta": "16",
   "vae_optimizer.learning_rate": "None",
   "vae_optimizer.optimizer_fn": "@AdamOptimizer"
 }
