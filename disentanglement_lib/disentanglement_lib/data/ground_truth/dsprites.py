@@ -25,8 +25,8 @@ import PIL
 from six.moves import range
 from tensorflow.compat.v1 import gfile
 
-DSPRITES_PATH = "/content/Thesis/disentanglement_lib/data/dsprites/dsprites/dsprites_ndarray_co1sh3sc6or40x32y32_64x64.npz"
-SCREAM_PATH = "/content/Thesis/disentanglement_lib/data/dsprites/scream/scream.jpg")
+DSPRITES_PATH = "/content/Thesis/disentanglement_lib/data/dsprites/dsprites_ndarray_co1sh3sc6or40x32y32_64x64.npz"
+SCREAM_PATH = "/content/Thesis/disentanglement_lib/data/scream/scream.jpg"
 
 
 
