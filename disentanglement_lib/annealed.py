@@ -12,6 +12,7 @@ from disentanglement_lib.utils import aggregate_results
 from disentanglement_lib.visualize import visualize_dataset
 from disentanglement_lib.visualize import visualize_model
 import tensorflow.compat.v1 as tf
+from tensorflow.compat.v1 import gfile
 import os
 from numpy import loadtxt
 
@@ -34,7 +35,7 @@ gin_bindings = [
 ]
 
 
-
+"""
 train.train_with_gin(path, True, model,gin_bindings)
 
 representation_path = os.path.join(path_vae, "representation")
@@ -42,8 +43,8 @@ model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
-
-# 4. Compute the Mutual Information Gap (already implemented) for both models.
+"""
+#4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
 # The main evaluation protocol of disentanglement_lib is defined in the
 # disentanglement_lib.evaluation.evaluate module. Again, we have to provide a
@@ -64,55 +65,62 @@ gin_bindings = [
 ]
 
 result_path = os.path.join(path_vae, "metrics", "mig")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
 representation_path = os.path.join(path_vae, "representation")
 evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
 
 
-# 5. Compute a custom disentanglement metric for both models.
-@gin.configurable(
-    "custom_metric",
-    blacklist=["ground_truth_data", "representation_function", "random_state"])
-def compute_custom_metric(ground_truth_data,
-                          representation_function,
-                          random_state,
-                          num_train=gin.REQUIRED,
-                          batch_size=16):
-  """Example of a custom (dummy) metric.
-  Preimplemented metrics can be found in disentanglement_lib.evaluation.metrics.
-  Args:
-    ground_truth_data: GroundTruthData to be sampled from.
-    representation_function: Function that takes observations as input and
-      outputs a dim_representation sized representation for each observation.
-    random_state: Numpy random state used for randomness.
-    num_train: Number of points used for training.
-    batch_size: Batch size for sampling.
-  Returns:
-    Dict with disentanglement score.
-  """
-  score_dict = {}
-
-  # This is how to obtain the representations of num_train points along with the
-  # ground-truth factors of variation.
-  representation, factors_of_variations = utils.generate_batch_factor_code(
-      ground_truth_data, representation_function, num_train, random_state,
-      batch_size)
-  # We could now compute a metric based on representation and
-  # factors_of_variations. However, for the sake of brevity, we just return 1.
-  del representation, factors_of_variations
-  score_dict["custom_metric"] = 1.
-  return score_dict
-
-
-# To compute the score, we again call the evaluation protocol with a gin
-# configuration. At this point, note that for all steps, we have to set a
-# random seed (in this case via `evaluation.random_seed`).
 gin_bindings = [
-    "evaluation.evaluation_fn = @custom_metric",
-    "custom_metric.num_train = 100", "evaluation.random_seed = 0",
-    "dataset.name='auto'"
+    "evaluation.evaluation_fn = @beta_vae_sklearn",
+    "dataset.name='auto'",
+    "evaluation.random_seed = 0",
+    "beta_vae_sklearn.batch_size=32",
+    "beta_vae_sklearn.num_train=1000",
+    "beta_vae_sklearn.num_eval=1000",
+    "discretizer.discretizer_fn = @histogram_discretizer",
+    "discretizer.num_bins = 20"
 ]
-result_path = os.path.join(path_vae, "metrics", "custom_metric")
+
+result_path = os.path.join(path_vae, "metrics", "beta_vae_score")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
+representation_path = os.path.join(path_vae, "representation")
 evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
+
+
+gin_bindings = [
+    "evaluation.evaluation_fn = @sap_score",
+    "dataset.name='auto'",
+    "sap_score.num_train=1000",
+    "evaluation.random_seed=1",
+    "sap_score.num_test=750",
+    "sap_score.continuous_factors = False",
+    "discretizer.discretizer_fn = @histogram_discretizer",
+    "discretizer.num_bins = 20"
+]
+
+result_path = os.path.join(path_vae, "metrics", "sap_score")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
+representation_path = os.path.join(path_vae, "representation")
+evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
+
+gin_bindings = [
+    "evaluation.evaluation_fn = @unsupervised_metrics",
+    "evaluation.random_seed=1",
+    "dataset.name='auto'",
+    "unsupervised_metrics.num_train=1000",
+    "discretizer.discretizer_fn = @histogram_discretizer",
+    "discretizer.num_bins = 20"
+]
+
+result_path = os.path.join(path_vae, "metrics", "unsupervised_metrics")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
+representation_path = os.path.join(path_vae, "representation")
+evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
+
 
 # 6. Aggregate the results.
 # ------------------------------------------------------------------------------
@@ -134,5 +142,8 @@ aggregate_results.aggregate_results_to_json(
 # metric always returns 1.
 model_results = aggregate_results.load_aggregated_json_results(results_path)
 print(model_results)
+
+
+
 
 

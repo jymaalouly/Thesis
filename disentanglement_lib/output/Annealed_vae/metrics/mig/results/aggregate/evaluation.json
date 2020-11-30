@@ -1,7 +1,4 @@
 {
-  "evaluation_results.discrete_mig": 0.004127425565595793,
-  "evaluation_results.elapsed_time": 4.76278018951416,
-  "evaluation_results.uuid": "a38b4297-7e83-471b-aa91-dd10dd4bd16f",
   "train_config.AdamOptimizer.beta1": "0.9",
   "train_config.AdamOptimizer.beta2": "0.999",
   "train_config.AdamOptimizer.epsilon": "1e-08",
@@ -28,6 +25,13 @@
   "train_config.reconstruction_loss.loss_fn": "@bernoulli_loss",
   "train_config.vae_optimizer.learning_rate": "None",
   "train_config.vae_optimizer.optimizer_fn": "@AdamOptimizer",
+  "evaluation_results.discrete_mig": 0.002972653789159422,
+  "evaluation_results.elapsed_time": 5.779707193374634,
+  "evaluation_results.uuid": "a7706cb2-fff3-4185-aae2-311f8ca76abb",
+  "postprocess_config.dataset.name": "'scatt'",
+  "postprocess_config.postprocess.name": "''",
+  "postprocess_config.postprocess.postprocess_fn": "@mean_representation",
+  "postprocess_config.postprocess.random_seed": "0",
   "postprocess_results.elapsed_time": 4.960365295410156,
   "postprocess_results.uuid": "72ff75ba-076c-4845-a2f8-9863586114a4",
   "evaluation_config.dataset.name": "'scatt'",
@@ -45,9 +49,5 @@
   "train_results.regularizer": 5.304800987243652,
   "train_results.global_step": 30000,
   "train_results.elapsed_time": 2742.864369869232,
-  "train_results.uuid": "85ee77d3-a92a-47d1-bb1d-4c530ec28b25",
-  "postprocess_config.dataset.name": "'scatt'",
-  "postprocess_config.postprocess.name": "''",
-  "postprocess_config.postprocess.postprocess_fn": "@mean_representation",
-  "postprocess_config.postprocess.random_seed": "0"
+  "train_results.uuid": "85ee77d3-a92a-47d1-bb1d-4c530ec28b25"
 }
