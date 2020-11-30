@@ -19,14 +19,14 @@ from numpy import loadtxt
 
 path = "/content/Thesis/disentanglement_lib"
 
-base_path = os.path.join(path, "output")
+base_path = os.path.join(path, "output/dsprites")
 path_vae = os.path.join(base_path, "vae")
 
 overwrite = True
 
 model = ["model.gin"]
 path = os.path.join(path_vae, "model")
-"""
+
 train.train_with_gin(path, True, model)
 
 
@@ -37,7 +37,7 @@ model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
-"""
+
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
 # The main evaluation protocol of disentanglement_lib is defined in the
