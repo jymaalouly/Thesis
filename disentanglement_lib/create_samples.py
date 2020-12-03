@@ -160,7 +160,7 @@ with hub.eval_function_for_module(module_path) as f:
   
   img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-4-2.png")# convert to array
   img_array = img_array.reshape([1, 64, 64, 3]).astype(np.float32) / 255. # add this to our training_data
-  random_codes = random_state.normal(0, 1, [1, 3])
+  random_codes = random_state.normal(0, 1, [1, 10])
   print(random_codes)
   pics = activation(_decoder(random_codes))
   results_dir = os.path.join(output_dir, "sampled")
@@ -177,9 +177,6 @@ with hub.eval_function_for_module(module_path) as f:
   logvars = result["logvar"]
   
 
-
-  print(random_codes.shape)
-  print(means)
   pics = activation(_decoder(means))
   results_dir = os.path.join(output_dir, "sampled")
   visualize_util.grid_save_images(pics,"/content/Thesis/disentanglement_lib/test/sampled/test.jpg")
