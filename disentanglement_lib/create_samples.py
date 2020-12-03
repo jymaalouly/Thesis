@@ -45,7 +45,7 @@ Args:
   fps: Integer with frame rate for the animation.
   num_points_irs: Number of points to be used for the IRS plots.
 """
-model_dir = "/content/Thesis/disentanglement_lib/output/vae/model"
+model_dir = "/content/Thesis/disentanglement_lib/output/scatt/vae/model"
 output_dir = "/content/Thesis/disentanglement_lib/test"
 overwrite=True
 num_animations=5
@@ -177,11 +177,7 @@ with hub.eval_function_for_module(module_path) as f:
   logvars = result["logvar"]
   
 
-  pics = activation(
-      latent_traversal_1d_multi_dim(_decoder, means[0, :], None))
-  file_name = os.path.join(results_dir, "traversals{}.jpg".format(0))
-  visualize_util.grid_save_images([pics], file_name)
-  
+
   print(random_codes.shape)
   print(means)
   pics = activation(_decoder(means))

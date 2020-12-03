@@ -9,7 +9,7 @@
   "dataset.name": "'scatt'",
   "decoder.decoder_fn": "@deconv_decoder",
   "encoder.encoder_fn": "@conv_encoder",
-  "encoder.num_latent": "3",
+  "encoder.num_latent": "10",
   "export_as_tf_hub.drop_collections": "None",
   "model.batch_size": "16",
   "model.eval_steps": "1000",

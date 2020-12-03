@@ -14,7 +14,7 @@
 # limitations under the License.
 
 
-dataset.name = "dsprites_full"
+dataset.name = "scatt"
 model.batch_size = 16
 model.model = @vae()
 model.random_seed = 0

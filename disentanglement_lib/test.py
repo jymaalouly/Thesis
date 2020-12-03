@@ -19,7 +19,7 @@ from numpy import loadtxt
 
 path = "/content/Thesis/disentanglement_lib"
 
-base_path = os.path.join(path, "output/dsprites")
+base_path = os.path.join(path, "output/scatt")
 path_vae = os.path.join(base_path, "vae")
 
 overwrite = True
