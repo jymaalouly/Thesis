@@ -30,7 +30,7 @@ decoder.decoder_fn = @deconv_decoder
 # Parameters for encoder:
 # ==============================================================================
 encoder.encoder_fn = @conv_encoder
-encoder.num_latent = 10
+encoder.num_latent = 4
 
 # Parameters for export_as_tf_hub:
 # ==============================================================================
@@ -44,7 +44,7 @@ model.model = @vae()
 model.model_num = None
 model.name = ''
 model.random_seed = 0
-model.training_steps = 30000
+model.training_steps = 10000
 
 # Parameters for reconstruction_loss:
 # ==============================================================================

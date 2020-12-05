@@ -176,11 +176,11 @@ with hub.eval_function_for_module(module_path) as f:
   means = result["mean"]
   logvars = result["logvar"]
   
-
-  pics = activation(_decoder(means))
+  print(means)
+  '''pics = activation(_decoder(means))
   results_dir = os.path.join(output_dir, "sampled")
   visualize_util.grid_save_images(pics,"/content/Thesis/disentanglement_lib/test/sampled/test.jpg")
-
+'''
 gin.clear_config()
 
 #[[ 0.26510307 -1.3585733  -1.0175796 ]]
