@@ -29,8 +29,7 @@ for a in range(0,20):
       if (b % 200) == 0 :
           for i, d in enumerate(colors):
             for c in range(len(marker)):
-                  name = 'size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
-                  name = str(b) + '-' + str(c) + '-' + str(i) + '.png'
+                  name = str(a) + '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
                   plt.figure(figsize=(6,6))
                   plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]))
                   plt.axis([0.0, 1.0, 0.0, 1.0])

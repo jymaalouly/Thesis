@@ -55,9 +55,9 @@ class Scatt(ground_truth_data.GroundTruthData):
     labels = genfromtxt(SCATT_PATH + '/output.csv', delimiter=',')
     self.images = (
         images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
-    features = labels.reshape([count, 3])
-    self.factor_sizes = [30, 16, 50]
-    self.latent_factor_indices = list(range(3))
+    features = labels.reshape([count, 4])
+    self.factor_sizes = [20, 15, 16, 20]
+    self.latent_factor_indices = list(range(4))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
