@@ -160,14 +160,14 @@ with hub.eval_function_for_module(module_path) as f:
   
   img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-4-2.png")# convert to array
   img_array = img_array.reshape([1, 64, 64, 3]).astype(np.float32) / 255. # add this to our training_data
-  random_codes = random_state.normal(0, 1, [1, 10])
+  random_codes = random_state.normal(0, 1, [1, 4])
   print(random_codes)
   pics = activation(_decoder(random_codes))
   results_dir = os.path.join(output_dir, "sampled")
   if not gfile.IsDirectory(results_dir):
       gfile.MakeDirs(results_dir)
   visualize_util.grid_save_images(pics,
-                                  os.path.join(results_dir, "samples.jpg"))
+                                  os.path.join(results_dir, "1000-0-4.jpg"))
   # Save latent traversals.
   result = f(
       dict(images=img_array),
@@ -177,10 +177,10 @@ with hub.eval_function_for_module(module_path) as f:
   logvars = result["logvar"]
   
   print(means)
-  '''pics = activation(_decoder(means))
+  pics = activation(_decoder(means))
   results_dir = os.path.join(output_dir, "sampled")
   visualize_util.grid_save_images(pics,"/content/Thesis/disentanglement_lib/test/sampled/test.jpg")
-'''
+
 gin.clear_config()
 
 #[[ 0.26510307 -1.3585733  -1.0175796 ]]
