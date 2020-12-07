@@ -31,14 +31,14 @@ for a in range(0,20):
           for i, d in enumerate(colors):
             for c in range(len(marker)):
                   name = str(a) + '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
-                  plt.figure(figsize=(6,6))
+                  '''plt.figure(figsize=(6,6))
                   plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]))
                   plt.axis([0.0, 1.0, 0.0, 1.0])
                   plt.tight_layout()
                   plt.savefig( output + "scatt/" + name, dpi=10.7)
                   #plt.show()
-                  plt.close('all')
-                  graph_features = graph_features.append( {'pos':a , 'size':(int(b/200)-6) ,'shape':c, 'color' : i}, ignore_index=True)
+                  plt.close('all')'''
+                  graph_features = graph_features.append( {'pos':a , 'size':(int(b/200)-5) ,'shape':c, 'color' : i}, ignore_index=True)
 
 #print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)
