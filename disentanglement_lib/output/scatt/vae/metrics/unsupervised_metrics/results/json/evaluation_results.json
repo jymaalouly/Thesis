@@ -1,8 +1,8 @@
 {
-  "gaussian_total_correlation": 0.5857710525601085,
-  "gaussian_wasserstein_correlation": 0.011068067114935687,
-  "gaussian_wasserstein_correlation_norm": 0.002149268664991075,
-  "mutual_info_score": 0.47954113117739994,
-  "elapsed_time": 8.232401847839355,
-  "uuid": "1020ac6a-023e-4a9a-a078-b9c4f2d73685"
+  "gaussian_total_correlation": 1.3283585738378747,
+  "gaussian_wasserstein_correlation": 0.009528198596473914,
+  "gaussian_wasserstein_correlation_norm": 0.003020378438648382,
+  "mutual_info_score": 0.23983976924146913,
+  "elapsed_time": 10.750929117202759,
+  "uuid": "4d0cb5a3-5a0c-4388-83d0-286b005dcaa5"
 }

@@ -30,7 +30,7 @@ decoder.decoder_fn = @deconv_decoder
 # Parameters for encoder:
 # ==============================================================================
 encoder.encoder_fn = @conv_encoder
-encoder.num_latent = 8
+encoder.num_latent = 10
 
 # Parameters for export_as_tf_hub:
 # ==============================================================================
