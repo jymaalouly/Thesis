@@ -23,10 +23,10 @@ graph_features = pd.DataFrame(columns=['points' ,'pos' , 'size' , 'shape','color
 
 for f in range(0,25):
   num_data_points += 5
+  print(f)
   for a in range(0,10):
     x = [random.gauss(0.5, 0.25)  for i in range(num_data_points)]
     y = [random.gauss(0.5, 0.25) for i in range(num_data_points)]
-    print(a)
     for b in range(1000,3001):
         if (b % 500) == 0 :
             for i, d in enumerate(colors):
@@ -39,7 +39,7 @@ for f in range(0,25):
                     plt.savefig( output + "scatt/" + name, dpi=10.7)
                     #plt.show()
                     plt.close('all')
-                    graph_features = graph_features.append( {'points': f ,'pos':a , 'size':(int(b/200)-2) ,'shape':c, 'color' : i}, ignore_index=True)
+                    graph_features = graph_features.append( {'points': f ,'pos':a , 'size':(int(b/200)-5) ,'shape':c, 'color' : i}, ignore_index=True)
 
 #print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)
