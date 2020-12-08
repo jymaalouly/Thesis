@@ -39,7 +39,7 @@ for f in range(0,25):
                     plt.savefig( output + "scatt/" + name, dpi=10.7)
                     #plt.show()
                     plt.close('all')'''
-                    graph_features = graph_features.append( {'points': f ,'pos':a , 'size':(int(b/500)-5) ,'shape':c, 'color' : i}, ignore_index=True)
+                    graph_features = graph_features.append( {'points': f ,'pos':a , 'size':(int(b/500)-2) ,'shape':c, 'color' : i}, ignore_index=True)
 
 #print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)

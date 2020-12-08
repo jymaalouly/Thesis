@@ -57,7 +57,7 @@ class Scatt(ground_truth_data.GroundTruthData):
         images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
     features = labels.reshape([count, 5])
     print(count)
-    self.factor_sizes = [24, 9, 10, 9, 4]
+    self.factor_sizes = [25, 10, 5, 10, 5]
     self.latent_factor_indices = list(range(5))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
