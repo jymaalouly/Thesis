@@ -11,7 +11,7 @@ from sklearn import preprocessing
 mypath = os.getcwd()
 output = "/content/Thesis/disentanglement_lib/data/"
 
-df1 = pd.read_csv("/content/Thesis/disentanglement_lib/csv/AER/CASchools.csv")
+df = pd.read_csv("/content/Thesis/disentanglement_lib/csv/datasets/AirPassengers.csv", index_col=0)
 counter = 0
 # number of data points
 num_data_points = 0
@@ -47,18 +47,25 @@ for f in range(0,25):
 #print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)
 '''
-
-
-for i in range(1,len(df1.columns)):
-  if df1.iloc[:, i].dtype.name == 'int64' or df1.iloc[:, i].dtype.name == 'float64':
-    x = preprocessing.normalize([df1.iloc[:, i]])
-    for t in range (i, len(df1.columns)):
-      if df1.iloc[:, t].dtype.name == 'int64' or df1.iloc[:, t].dtype.name == 'float64':
-        y = preprocessing.normalize([df1.iloc[:, t]])
-        plt.figure(figsize=(6,6))
-        plt.scatter(x, y)
-        plt.axis([0.0, 1.0, 0.0, 1.0])
-        plt.tight_layout()
-        plt.savefig( output + "scatt/" + str(i) + '-'+ str(t), dpi=10.7)
-        #plt.show()
-        plt.close('all')
+count = 0 
+for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv/datasets')):
+    if filename.endswith('.csv'):
+      count += 1
+      df = pd.read_csv("/content/Thesis/disentanglement_lib/csv/datasets/"+filename, index_col=0)
+      for index2, column in enumerate(df):
+        if df[column].dtype.name == 'int64' or df[column].dtype.name == 'float64':
+          min_max_scaler = preprocessing.MinMaxScaler()
+          x_scaled = min_max_scaler.fit_transform(df[[column]])
+          x = pd.DataFrame(x_scaled)
+          for index3, column1 in enumerate(df):
+            if column != column1:
+              if df[column1].dtype.name == 'int64' or df[column1].dtype.name == 'float64':
+                y_scaled = min_max_scaler.fit_transform(df[[column1]])
+                y = pd.DataFrame(y_scaled)
+                plt.figure(figsize=(6,6))
+                plt.scatter(x, y)
+                plt.axis([0.0, 1.0, 0.0, 1.0])
+                plt.tight_layout()
+                plt.savefig( output + "scatt/" + str(index1) +'-'+ str(index2) + '-'+ str(index3), dpi=10.7)
+                #plt.show()
+                plt.close('all')
