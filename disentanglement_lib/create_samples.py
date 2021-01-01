@@ -158,7 +158,7 @@ with hub.eval_function_for_module(module_path) as f:
   num_latent = int(gin_dict["encoder.num_latent"])
   num_pics = 32
   
-  img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-4-2.png")# convert to array
+  img_array = cv2.imread("/content/Thesis/disentanglement_lib/9-750-5-1.png")# convert to array
   img_array = img_array.reshape([1, 64, 64, 3]).astype(np.float32) / 255. # add this to our training_data
   '''random_codes = random_state.normal(0, 1, [1, 4])
   print(random_codes)
