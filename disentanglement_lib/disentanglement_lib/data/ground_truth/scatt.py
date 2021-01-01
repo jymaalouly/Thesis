@@ -45,7 +45,7 @@ class Scatt(ground_truth_data.GroundTruthData):
   def __init__(self):
     join = []
     count = 0
-    for img in os.listdir(SCATT_PATH + '/scatt'):
+    for img in sorted(os.listdir(SCATT_PATH + '/scatt')):
         if img.endswith('.png'):
             count += 1
             img_array = cv2.imread(os.path.join((SCATT_PATH + '/scatt'),img))# convert to array
@@ -58,10 +58,10 @@ class Scatt(ground_truth_data.GroundTruthData):
     
     print(images.shape)
     print(labels.shape)
-    features = labels.reshape([count, 3])
+    features = labels.reshape([count, 4])
    
-    self.factor_sizes = [5, 7, 5]
-    self.latent_factor_indices = list(range(3))
+    self.factor_sizes = [456, 5, 7, 5]
+    self.latent_factor_indices = list(range(4))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
