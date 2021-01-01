@@ -64,13 +64,13 @@ for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
                         for i, d in enumerate(colors):
                           for c in range(len(marker)):
                                 name = str(index1)+ str(index2)+str(index3)+ '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
-                                plt.figure(figsize=(6,6))
+                                '''plt.figure(figsize=(6,6))
                                 plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]), alpha=0.7)
                                 plt.axis([0.0, 1.0, 0.0, 1.0])
                                 plt.tight_layout()
                                 plt.savefig( output + "scatt/" + name, dpi=10.7)
                                 #plt.show()
-                                plt.close('all')
+                                plt.close('all')'''
                                 graph_features = graph_features.append( {'size':(int(b/200)-1) ,'shape':c, 'color' : i}, ignore_index=True)
   except ValueError:
     print("Oops!  That was no valid number.  Try again...")
