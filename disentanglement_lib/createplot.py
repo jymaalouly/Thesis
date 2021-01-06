@@ -18,7 +18,7 @@ marker = ["o","s","p","H","X","D"]
 
 evenly_spaced_interval = np.linspace(0, 1, 5)
 colors = [cm.rainbow(x) for x in evenly_spaced_interval]
-graph_features = pd.DataFrame(columns=['size' , 'shape','color'])
+graph_features = pd.DataFrame(columns=['pos','size' , 'shape','color'])
 # draw the plot
 '''
 for f in range(0,25):
@@ -42,28 +42,31 @@ for f in range(0,25):
                     plt.close('all')
                     graph_features = graph_features.append( {'pos':counter -1 , 'size':(int(b/500)-2) ,'shape':c, 'color' : i}, ignore_index=True)
 '''
+filenum = 0
 count = 0 
 for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv/datasets')):
   try:
       if index1 < 20:
-        count += 1
         print(filename)
         df = pd.read_csv("/content/Thesis/disentanglement_lib/csv/datasets/"+filename, index_col=0)
         for index2, column in enumerate(df):
           if df[column].dtype.name == 'int64' or df[column].dtype.name == 'float64':
+
             min_max_scaler = preprocessing.MinMaxScaler()
             x_scaled = min_max_scaler.fit_transform(df[[column]])
             x = pd.DataFrame(x_scaled)
             for index3, column1 in enumerate(df):
               if column != column1 or index2 < index3:
                 if df[column1].dtype.name == 'int64' or df[column1].dtype.name == 'float64':
+                  count += 1
                   y_scaled = min_max_scaler.fit_transform(df[[column1]])
                   y = pd.DataFrame(y_scaled)
                   for b in range(50,301):
                     if (b % 50) == 0 :
                         for i, d in enumerate(colors):
                           for c in range(len(marker)):
-                                name = str(index1)+ str(index2)+str(index3)+ '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
+                                filenum += 1
+                                name = str(count)+ '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
                                 plt.figure(figsize=(6,6))
                                 plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]), alpha=0.7)
                                 plt.axis([0.0, 1.0, 0.0, 1.0])
@@ -71,7 +74,7 @@ for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
                                 plt.savefig( output + "scatt/" + name, dpi=10.7)
                                 #plt.show()
                                 plt.close('all')
-                                graph_features = graph_features.append( {'size':(int(b/200)-1) ,'shape':c, 'color' : i}, ignore_index=True)
+                                graph_features = graph_features.append( {'pos':count-1,'size':(int(b/200)-1) ,'shape':c, 'color' : i}, ignore_index=True)
   except ValueError:
     print("Oops!  That was no valid number.  Try again...")
                 
