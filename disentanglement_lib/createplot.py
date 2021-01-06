@@ -55,14 +55,14 @@ for index0, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
             x_scaled = min_max_scaler.fit_transform(df[[column]])
             x = pd.DataFrame(x_scaled)
             for index3, column1 in enumerate(df):
-              if column != column1 or index2 < index3:
+              if column != column1 and index2 < index3:
                 if df[column1].dtype.name == 'int64' or df[column1].dtype.name == 'float64':
                   y_scaled = min_max_scaler.fit_transform(df[[column1]])
                   y = pd.DataFrame(y_scaled)
                   if not ((x.iloc[0] == 0).all()) and not ((y.iloc[0] == 0).all()) :
                     name = str(index0)+ '-' + str(index1) + '-' + str(index2) + '-' + str(index3) + '.png'
                     plt.figure(figsize=(6,6))
-                    plt.scatter(x, y, s = 50, marker = "o",alpha=0.7)
+                    plt.scatter(x, y, s = 100, marker = "o",alpha=0.7)
                     plt.axis([0.0, 1.0, 0.0, 1.0])
                     plt.tight_layout()
                     plt.savefig( output + "og/" + name, dpi=10.7)
