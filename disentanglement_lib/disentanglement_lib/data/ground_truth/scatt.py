@@ -60,7 +60,7 @@ class Scatt(ground_truth_data.GroundTruthData):
     print(labels.shape)
     features = labels.reshape([count, 4])
    
-    self.factor_sizes = [470, 6, 6, 5]
+    self.factor_sizes = [314, 6, 6, 5]
     self.latent_factor_indices = list(range(4))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)

@@ -42,6 +42,36 @@ for f in range(0,25):
                     plt.close('all')
                     graph_features = graph_features.append( {'pos':counter -1 , 'size':(int(b/500)-2) ,'shape':c, 'color' : i}, ignore_index=True)
 '''
+
+
+for index0, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv')):
+  for index1, filename1 in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv/'+filename)):
+ 
+        print(filename1)
+        df = pd.read_csv("/content/Thesis/disentanglement_lib/csv/" + filename + "/" + filename1 , index_col=0)
+        for index2, column in enumerate(df):
+          if df[column].dtype.name == 'int64' or df[column].dtype.name == 'float64':
+            min_max_scaler = preprocessing.MinMaxScaler()
+            x_scaled = min_max_scaler.fit_transform(df[[column]])
+            x = pd.DataFrame(x_scaled)
+            for index3, column1 in enumerate(df):
+              if column != column1 or index2 < index3:
+                if df[column1].dtype.name == 'int64' or df[column1].dtype.name == 'float64':
+                  y_scaled = min_max_scaler.fit_transform(df[[column1]])
+                  y = pd.DataFrame(y_scaled)
+                  if not ((x == 0).all()) and not ((y == 0).all()) :
+                    name = str(index0)+ '-' + str(index1) + '-' + str(index2) + '-' + str(index3) + '.png'
+                    plt.figure(figsize=(6,6))
+                    plt.scatter(x, y, s = 50, marker = "o",alpha=0.7)
+                    plt.axis([0.0, 1.0, 0.0, 1.0])
+                    plt.tight_layout()
+                    plt.savefig( output + "og/" + name, dpi=10.7)
+                    #plt.show()
+                    plt.close('all')
+
+                
+
+'''
 filenum = 0
 count = 0 
 for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv/datasets')):
@@ -80,3 +110,4 @@ for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
                 
 print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)
+'''
