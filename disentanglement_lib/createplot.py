@@ -42,12 +42,12 @@ for f in range(0,25):
                     plt.close('all')
                     graph_features = graph_features.append( {'pos':counter -1 , 'size':(int(b/500)-2) ,'shape':c, 'color' : i}, ignore_index=True)
 '''
-
+print('477')
 counter = 0
 for index0, filename in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/csv'))):
   for index1, filename1 in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/csv/'+filename))):
         counter += 1
-        print(filename + " " + filename1 + " " + counter)
+        print(filename + " " + filename1 + " " + str(counter))
         df = pd.read_csv("/content/Thesis/disentanglement_lib/csv/" + filename + "/" + filename1 , index_col=0)
         for index2, column in enumerate(df):
           if df[column].dtype.name == 'int64' or df[column].dtype.name == 'float64':
