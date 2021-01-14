@@ -19,8 +19,8 @@ from numpy import loadtxt
 
 path = "/content/Thesis/disentanglement_lib/experiment_1/initial_data"
 
-base_path = os.path.join(path, "output/scatt")
-path_vae = os.path.join(base_path, "vae")
+base_path = os.path.join(path, "output")
+path_vae = os.path.join(base_path, "beta_vae")
 
 overwrite = True
 
@@ -37,7 +37,7 @@ model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
-
+'''
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
 # The main evaluation protocol of disentanglement_lib is defined in the
@@ -125,7 +125,7 @@ pattern = os.path.join(base_path,
 results_path = os.path.join(base_path, "results.json")
 aggregate_results.aggregate_results_to_json(
     pattern, results_path)
-
+'''
 # 7. Print out the final Pandas data frame with the results.
 # ------------------------------------------------------------------------------
 # The aggregated results contains for each computed metric all the configuration
