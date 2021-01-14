@@ -8,35 +8,38 @@ from matplotlib import cm
 from sklearn import preprocessing
 
 mypath = os.getcwd()
-output = "/content/Thesis/disentanglement_lib/data/intial_data/"
+output = "/content/Thesis/disentanglement_lib/data/synthetic_scatt/"
 
 counter = 0
 # number of data points
-num_data_points = 5
+num_data_points = 0
 
 marker = ["o","s","p","H","X","D"]
 
 evenly_spaced_interval = np.linspace(0, 1, 5)
 colors = [cm.rainbow(x) for x in evenly_spaced_interval]
-graph_features = pd.DataFrame(columns=['size' , 'shape','color'])
+graph_features = pd.DataFrame(columns=['pos','size' , 'shape','color'])
 # draw the plot
 
-
-x = [random.gauss(0.5, 0.25)  for i in range(num_data_points)]
-y = [random.gauss(0.5, 0.25) for i in range(num_data_points)]
-for b in range(50,301):
-  if (b % 50) == 0 :
-    for i, d in enumerate(colors):
-          for c in range(len(marker)):
-                name = str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
-                plt.figure(figsize=(6,6))
-                plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]))
-                plt.axis([0.0, 1.0, 0.0, 1.0])
-                plt.tight_layout()
-                plt.savefig( output + "scatt/" + name, dpi=10.7)
-                #plt.show()
-                plt.close('all')
-                graph_features = graph_features.append( {'size':(int(b/50)-1) ,'shape':c, 'color' : i}, ignore_index=True)
+for f in range(0,25):
+  num_data_points += 5
+  for a in range(0,10):
+    counter += 1
+    x = [random.gauss(0.5, 0.25)  for i in range(num_data_points)]
+    y = [random.gauss(0.5, 0.25) for i in range(num_data_points)]
+    for b in range(50,301):
+      if (b % 50) == 0 :
+        for i, d in enumerate(colors):
+              for c in range(len(marker)):
+                    name = str(f) + '-pos-' + str(a) + '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
+                    plt.figure(figsize=(6,6))
+                    plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]))
+                    plt.axis([0.0, 1.0, 0.0, 1.0])
+                    plt.tight_layout()
+                    plt.savefig( output + "scatt/" + name, dpi=10.7)
+                    #plt.show()
+                    plt.close('all')
+                    graph_features = graph_features.append( {'pos':counter-1,'size':(int(b/50)-1) ,'shape':c, 'color' : i}, ignore_index=True)
 '''
 
 for index0, filename in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/csv'))):
