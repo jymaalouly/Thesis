@@ -26,18 +26,18 @@ overwrite = True
 
 model = ["model.gin"]
 path = os.path.join(path_vae, "model")
-
+'''
 train.train_with_gin(path, True, model)
 
 
 
-
+'''
 representation_path = os.path.join(path_vae, "representation")
 model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
-'''
+
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
 # The main evaluation protocol of disentanglement_lib is defined in the
@@ -53,7 +53,7 @@ gin_bindings = [
     "evaluation.evaluation_fn = @mig",
     "dataset.name='auto'",
     "evaluation.random_seed = 0",
-    "mig.num_train=100",
+    "mig.num_train=1000",
     "discretizer.discretizer_fn = @histogram_discretizer",
     "discretizer.num_bins = 20"
 ]
@@ -86,7 +86,7 @@ evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bind
 gin_bindings = [
     "evaluation.evaluation_fn = @sap_score",
     "dataset.name='auto'",
-    "sap_score.num_train=100",
+    "sap_score.num_train=1000",
     "evaluation.random_seed=1",
     "sap_score.num_test=750",
     "sap_score.continuous_factors = False",
@@ -114,7 +114,7 @@ if not gfile.IsDirectory(result_path):
     gfile.MakeDirs(result_path)
 representation_path = os.path.join(path_vae, "representation")
 evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
-'''
+
 
 # 6. Aggregate the results.
 # ------------------------------------------------------------------------------
