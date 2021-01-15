@@ -1,4 +1,14 @@
 {
+  "train_results.elbo": -459.2945556640625,
+  "train_results.kl_loss": 0.016111908480525017,
+  "train_results.loss": 459.5361022949219,
+  "train_results.reconstruction_loss": 459.27838134765625,
+  "train_results.regularizer": 0.25779053568840027,
+  "train_results.global_step": 1000,
+  "train_results.elapsed_time": 31.873953104019165,
+  "train_results.uuid": "a6a6db62-2c34-4f57-8298-6374386a8246",
+  "postprocess_results.elapsed_time": 1.6151423454284668,
+  "postprocess_results.uuid": "fa297578-dd68-4fcf-ad84-e63229463188",
   "train_config.AdamOptimizer.beta1": "0.9",
   "train_config.AdamOptimizer.beta2": "0.999",
   "train_config.AdamOptimizer.epsilon": "1e-08",
@@ -26,15 +36,5 @@
   "postprocess_config.dataset.name": "'scatt'",
   "postprocess_config.postprocess.name": "''",
   "postprocess_config.postprocess.postprocess_fn": "@mean_representation",
-  "postprocess_config.postprocess.random_seed": "0",
-  "train_results.elbo": -894.8907470703125,
-  "train_results.kl_loss": 0.5072357058525085,
-  "train_results.loss": 902.4989013671875,
-  "train_results.reconstruction_loss": 894.3837280273438,
-  "train_results.regularizer": 8.115771293640137,
-  "train_results.global_step": 1000,
-  "train_results.elapsed_time": 299.3146975040436,
-  "train_results.uuid": "7d5f809e-95e9-4ce7-9f16-bf93bcd7f335",
-  "postprocess_results.elapsed_time": 9.114967584609985,
-  "postprocess_results.uuid": "4188a3ae-ef8c-4ab6-a79a-c16ace3c7434"
+  "postprocess_config.postprocess.random_seed": "0"
 }

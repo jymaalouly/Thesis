@@ -1,0 +1,10 @@
+{
+  "elbo": -130.967041015625,
+  "kl_loss": 6.425285339355469,
+  "loss": 227.346435546875,
+  "reconstruction_loss": 124.54163360595703,
+  "regularizer": 102.8045654296875,
+  "global_step": 100000,
+  "elapsed_time": 815.4463038444519,
+  "uuid": "df716eb0-70fa-47ac-a4b8-da08f79a5ce8"
+}

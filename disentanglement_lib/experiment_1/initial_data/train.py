@@ -31,12 +31,12 @@ train.train_with_gin(path, True, model)
 
 
 
-
 representation_path = os.path.join(path_vae, "representation")
 model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
+
 '''
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ if not gfile.IsDirectory(result_path):
     gfile.MakeDirs(result_path)
 representation_path = os.path.join(path_vae, "representation")
 evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
-
+'''
 
 # 6. Aggregate the results.
 # ------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ pattern = os.path.join(base_path,
 results_path = os.path.join(base_path, "results.json")
 aggregate_results.aggregate_results_to_json(
     pattern, results_path)
-'''
+
 # 7. Print out the final Pandas data frame with the results.
 # ------------------------------------------------------------------------------
 # The aggregated results contains for each computed metric all the configuration
@@ -136,5 +136,3 @@ aggregate_results.aggregate_results_to_json(
 # metric always returns 1.
 model_results = aggregate_results.load_aggregated_json_results(results_path)
 print(model_results)
-
-
