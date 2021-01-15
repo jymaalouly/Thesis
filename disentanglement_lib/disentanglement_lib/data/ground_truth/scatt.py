@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Shapes3D data set."""
+"""scatt data set."""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -37,9 +37,9 @@ class Scatt(ground_truth_data.GroundTruthData):
   The data set was originally introduced in "Disentangling by Factorising".
 
   The ground-truth factors of variation are:
-  0 - size(30 different values)
-  1 - shape(16 different values)
-  2 - color (50 different values)
+  0 - size(6 different values)
+  1 - shape(6 different values)
+  2 - color (5 different values)
   """
 
   def __init__(self):
@@ -58,10 +58,10 @@ class Scatt(ground_truth_data.GroundTruthData):
     
     print(images.shape)
     print(labels.shape)
-    features = labels.reshape([count, 3])
+    features = labels.reshape([count, 4])
    
-    self.factor_sizes = [6, 6, 5]
-    self.latent_factor_indices = list(range(3))
+    self.factor_sizes = [250 , 6, 6, 5]
+    self.latent_factor_indices = list(range(4))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
