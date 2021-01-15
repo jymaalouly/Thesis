@@ -27,7 +27,7 @@ import tensorflow.compat.v1 as tf
 from numpy import genfromtxt
 
 
-SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/data")
+SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/data/initial_data")
 
 
 
@@ -58,10 +58,10 @@ class Scatt(ground_truth_data.GroundTruthData):
     
     print(images.shape)
     print(labels.shape)
-    features = labels.reshape([count, 4])
+    features = labels.reshape([count, 3])
    
-    self.factor_sizes = [314, 6, 6, 5]
-    self.latent_factor_indices = list(range(4))
+    self.factor_sizes = [6, 6, 5]
+    self.latent_factor_indices = list(range(3))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
     self.state_space = util.SplitDiscreteStateSpace(self.factor_sizes,
