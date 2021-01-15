@@ -20,18 +20,18 @@ from numpy import loadtxt
 path = "/content/Thesis/disentanglement_lib/experiment_1/dsprites"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "beta_vae_100000")
+path_vae = os.path.join(base_path, "beta_vae")
 
 overwrite = True
 
 model = ["model.gin"]
 path = os.path.join(path_vae, "model")
-'''
+
 train.train_with_gin(path, True, model)
 
 
 
-'''
+
 representation_path = os.path.join(path_vae, "representation")
 model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.

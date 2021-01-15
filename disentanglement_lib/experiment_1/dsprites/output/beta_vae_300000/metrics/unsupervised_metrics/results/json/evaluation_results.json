@@ -1,0 +1,8 @@
+{
+  "gaussian_total_correlation": 1.841502073800605,
+  "gaussian_wasserstein_correlation": 0.03852424811568422,
+  "gaussian_wasserstein_correlation_norm": 0.010999857442397665,
+  "mutual_info_score": 0.8874030048588304,
+  "elapsed_time": 10.128268957138062,
+  "uuid": "3c9a7933-3e71-4cca-a075-3812840a037f"
+}

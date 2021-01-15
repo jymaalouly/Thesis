@@ -8,7 +8,7 @@ from matplotlib import cm
 from sklearn import preprocessing
 
 mypath = os.getcwd()
-output = "/content/Thesis/disentanglement_lib/data/synthetic_scatt/"
+output = "/content/Thesis/disentanglement_lib/data/synthetic_data/"
 
 counter = 0
 # number of data points
@@ -31,7 +31,7 @@ for f in range(0,25):
       if (b % 50) == 0 :
         for i, d in enumerate(colors):
               for c in range(len(marker)):
-                    name = str(f) + '-pos-' + str(a) + '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
+                    name = str(f) + '-pos-' + str(counter) + '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
                     plt.figure(figsize=(6,6))
                     plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]))
                     plt.axis([0.0, 1.0, 0.0, 1.0])
