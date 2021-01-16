@@ -122,7 +122,7 @@ evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bind
 # can aggregate all the results using the following command.
 pattern = os.path.join(base_path,
                        "*/metrics/*/results/aggregate/evaluation.json")
-results_path = os.path.join(base_path, "results.json")
+results_path = os.path.join(path_vae, "results.json")
 aggregate_results.aggregate_results_to_json(
     pattern, results_path)
 
