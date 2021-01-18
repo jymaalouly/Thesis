@@ -66,6 +66,24 @@ evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bind
 
 
 gin_bindings = [
+    "evaluation.evaluation_fn = @factor_vae_score",
+    "dataset.name='auto'",
+    "evaluation.random_seed = 0",
+    "factor_vae_score.batch_size=32",
+    "factor_vae_score.num_train=1000",
+    "factor_vae_score.num_eval=1000",
+    "discretizer.discretizer_fn = @histogram_discretizer",
+    "discretizer.num_bins = 20"
+]
+
+result_path = os.path.join(path_vae, "metrics", "factor_vae_score")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
+representation_path = os.path.join(path_vae, "representation")
+evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
+
+
+gin_bindings = [
     "evaluation.evaluation_fn = @beta_vae_sklearn",
     "dataset.name='auto'",
     "evaluation.random_seed = 0",
