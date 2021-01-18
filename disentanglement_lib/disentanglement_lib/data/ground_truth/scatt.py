@@ -27,7 +27,7 @@ import tensorflow.compat.v1 as tf
 from numpy import genfromtxt
 
 
-SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/sythetic_data")
+SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/data/sythetic_data")
 
 
 
