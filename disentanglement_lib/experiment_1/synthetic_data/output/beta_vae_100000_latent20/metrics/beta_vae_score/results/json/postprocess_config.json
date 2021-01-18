@@ -1,0 +1,6 @@
+{
+  "dataset.name": "'scatt'",
+  "postprocess.name": "''",
+  "postprocess.postprocess_fn": "@mean_representation",
+  "postprocess.random_seed": "0"
+}
