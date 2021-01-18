@@ -20,4 +20,4 @@ evaluation.random_seed = 0
 # Parameters for mig:
 # ==============================================================================
 mig.batch_size = 16
-mig.num_train = 1000
+mig.num_train = 10000

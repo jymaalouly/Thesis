@@ -6,5 +6,5 @@
   "evaluation.name": "''",
   "evaluation.random_seed": "0",
   "mig.batch_size": "16",
-  "mig.num_train": "1000"
+  "mig.num_train": "10000"
 }

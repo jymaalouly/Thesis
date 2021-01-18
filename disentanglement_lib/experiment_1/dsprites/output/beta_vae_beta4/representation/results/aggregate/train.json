@@ -23,12 +23,12 @@
   "train_config.vae.beta": "4",
   "train_config.vae_optimizer.learning_rate": "None",
   "train_config.vae_optimizer.optimizer_fn": "@AdamOptimizer",
-  "train_results.elbo": -85.11852264404297,
-  "train_results.kl_loss": 13.141911506652832,
-  "train_results.loss": 124.54431915283203,
-  "train_results.reconstruction_loss": 71.97665405273438,
-  "train_results.regularizer": 52.56764602661133,
+  "train_results.elbo": -85.2972412109375,
+  "train_results.kl_loss": 13.079340934753418,
+  "train_results.loss": 124.53527069091797,
+  "train_results.reconstruction_loss": 72.21796417236328,
+  "train_results.regularizer": 52.31736373901367,
   "train_results.global_step": 100000,
-  "train_results.elapsed_time": 852.0834197998047,
-  "train_results.uuid": "68a68282-846d-4af7-a8d6-247565c8fe59"
+  "train_results.elapsed_time": 1080.4014132022858,
+  "train_results.uuid": "d0bc88bc-483d-41f0-bba0-30c5713c34f4"
 }

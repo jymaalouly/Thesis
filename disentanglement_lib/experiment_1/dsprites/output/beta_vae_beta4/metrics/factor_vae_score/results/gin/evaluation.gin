@@ -1,0 +1,20 @@
+# Parameters for dataset:
+# ==============================================================================
+dataset.name = 'dsprites_noshape'
+
+# Parameters for evaluation:
+# ==============================================================================
+evaluation.evaluation_fn = @factor_vae_score
+evaluation.name = ''
+evaluation.random_seed = 0
+
+# Parameters for factor_vae_score:
+# ==============================================================================
+factor_vae_score.batch_size = 32
+factor_vae_score.num_eval = 5000
+factor_vae_score.num_train = 10000
+factor_vae_score.num_variance_estimate = 64
+
+# Parameters for prune_dims:
+# ==============================================================================
+prune_dims.threshold = 0.0
