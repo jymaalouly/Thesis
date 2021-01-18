@@ -8,7 +8,7 @@ from matplotlib import cm
 from sklearn import preprocessing
 
 mypath = os.getcwd()
-output = "/content/Thesis/disentanglement_lib/data/synthetic_data/"
+output = "/content/Thesis/disentanglement_lib/data/"
 
 counter = 0
 # number of data points
@@ -21,6 +21,7 @@ colors = [cm.rainbow(x) for x in evenly_spaced_interval]
 graph_features = pd.DataFrame(columns=['pos','size' , 'shape','color'])
 # draw the plot
 
+'''
 for f in range(0,25):
   num_data_points += 5
   for a in range(0,10):
@@ -40,7 +41,7 @@ for f in range(0,25):
                     #plt.show()
                     plt.close('all')
                     graph_features = graph_features.append( {'pos':counter-1,'size':(int(b/50)-1) ,'shape':c, 'color' : i}, ignore_index=True)
-'''
+
 
 for index0, filename in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/csv'))):
   for index1, filename1 in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/csv/'+filename))):
@@ -67,10 +68,8 @@ for index0, filename in enumerate(sorted(os.listdir('/content/Thesis/disentangle
                     #plt.show()
                     plt.close('all')
                     
+         
 
-'''                
-
-'''
 filenum = 0
 count = 0 
 for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/csv/datasets')):
@@ -95,7 +94,7 @@ for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
                         for i, d in enumerate(colors):
                           for c in range(len(marker)):
                                 filenum += 1
-                                name = str(count)+ '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
+                                name = str(filenum)+ '-' + str(count)+ '-size-' + str(b) + '-shape-' + str(c) + '-color-' + str(i) + '.png'
                                 plt.figure(figsize=(6,6))
                                 plt.scatter(x, y, s = b, marker = marker[c], c = np.array([d]), alpha=0.7)
                                 plt.axis([0.0, 1.0, 0.0, 1.0])
@@ -106,6 +105,12 @@ for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_li
                                 graph_features = graph_features.append( {'pos':count-1,'size':(int(b/50)-1) ,'shape':c, 'color' : i}, ignore_index=True)
   except ValueError:
     print("Oops!  That was no valid number.  Try again...")
-'''                
+              
 print(graph_features)
 graph_features.to_csv(output + 'output.csv',index = False, header=False)
+
+
+'''       
+for index1, filename in enumerate(os.listdir('/content/Thesis/disentanglement_lib/data/scatt')):
+  print(filename)
+  #os.rename(r'file path\OLD file name.file type',r'file path\NEW file name.file type')

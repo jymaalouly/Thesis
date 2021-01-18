@@ -10,7 +10,7 @@ for index1, filename in enumerate(sorted(os.listdir('/content/Thesis/disentangle
   
   x = filename.split('-')
   y = x[6].split('.')
-  graph_features = graph_features.append( {'pos': int(int(x[0])-1) ,'size':int((int(x[2])/50)-1) ,'shape':x[4], 'color' : y[0]}, ignore_index=True)
+  graph_features = graph_features.append( {'pos': int(x[0]) ,'size': int(x[2] ,'shape': int(x[4]), 'color' : y[0]}, ignore_index=True)
   
 print(graph_features)
 graph_features.to_csv('/content/Thesis/disentanglement_lib/output.csv',index = False, header=False)
