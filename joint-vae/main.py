@@ -17,7 +17,7 @@ data_loader = get_sctterplot_dataloader(batch_size, dataset_path)
 img_size = (3, 64, 64)
 
 # Define latent spec and model
-latent_spec = {'cont': 32, 'disc': [0]}
+latent_spec = {'cont': 32}
 model = VAE(img_size=img_size, latent_spec=latent_spec,
             use_cuda=use_cuda)
 if use_cuda:
@@ -37,4 +37,3 @@ trainer.train(data_loader, epochs)
 
 # Save trained model
 torch.save(trainer.model.state_dict(), '/content/Thesis/joint-vae/trained_models/scatterplot/model.pt')
-asdasd
