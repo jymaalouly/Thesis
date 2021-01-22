@@ -13,7 +13,7 @@ dataset_path = '/content/Thesis/disentanglement_lib/data/og/'
 use_cuda = torch.cuda.is_available()
 
 # Load data
-data_loader, test_loader = get_sctterplot_dataloader(batch_size, dataset_path)
+data_loader = get_sctterplot_dataloader(batch_size, dataset_path)
 img_size = (3, 64, 64)
 
 # Define latent spec and model
