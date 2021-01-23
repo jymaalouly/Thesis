@@ -20,6 +20,6 @@ samples = viz.samples()
 print(samples)
 viz.save_images = True  # Return tensors instead of saving images
 
-
+traversal = viz.latent_traversal_line(cont_idx=6, size=12)
 traversals = viz.all_latent_traversals()
 
