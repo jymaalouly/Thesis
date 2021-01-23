@@ -1,3 +1,4 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 /content/Thesis/disentanglement_lib/data/real_world_data filter=lfs diff=lfs merge=lfs -text
+/content/Thesis/disentanglement_lib/data/scatt filter=lfs diff=lfs merge=lfs -text
