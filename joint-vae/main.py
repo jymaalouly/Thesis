@@ -5,10 +5,10 @@ from utils.dataloaders import get_sctterplot_dataloader
 from torch import optim
 
 
-batch_size = 512
+batch_size = 128
 lr = 5e-4
 epochs = 20
-dataset_path = '/content/Thesis/disentanglement_lib/data/scag/scatt/' 
+dataset_path = '/content/Thesis/disentanglement_lib/data/real_world_data' 
 # Check for cuda
 use_cuda = torch.cuda.is_available()
 
