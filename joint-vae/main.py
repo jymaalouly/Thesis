@@ -5,9 +5,9 @@ from utils.dataloaders import get_sctterplot_dataloader
 from torch import optim
 
 
-batch_size = 128
+batch_size = 16
 lr = 5e-4
-epochs = 20
+epochs = 150
 dataset_path = '/content/Thesis/disentanglement_lib/data/real_world_data' 
 # Check for cuda
 use_cuda = torch.cuda.is_available()
@@ -17,7 +17,7 @@ data_loader = get_sctterplot_dataloader(batch_size, dataset_path)
 img_size = (3, 64, 64)
 
 # Define latent spec and model
-latent_spec = {'cont': 16}
+latent_spec = {'cont': 32}
 model = VAE(img_size=img_size, latent_spec=latent_spec,
             use_cuda=use_cuda)
 if use_cuda:
