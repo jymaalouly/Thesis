@@ -164,7 +164,9 @@ class ScatterplotDataset(Dataset):
 
     def __getitem__(self, idx):
         sample_path = self.img_paths[idx]
-        sample = imread(sample_path)[:,:,:3]
+        if sample_path.endswith('.png'):
+          sample = imread(sample_path, as_gray=True)
+          sample = sample.reshape(sample.shape + (1,))
 
         if self.transform:
             sample = self.transform(sample)

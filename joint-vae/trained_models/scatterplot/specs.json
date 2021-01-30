@@ -1,1 +1,1 @@
-{"cont_capacity": [0.0, 50.0, 100000, 100.0], "disc_capacity": [0.0, 10.0, 100000, 100.0], "record_loss_every": 10, "batch_size": 32, "latent_spec": {"cont": 32}, "epochs": [20, 21], "experiment_name": "2", "lr": [0.0005], "print_loss_every": 50, "dataset": "celeba"}
+{"cont_capacity": [0.0, 50.0, 100000, 100.0], "disc_capacity": [0.0, 10.0, 100000, 100.0], "record_loss_every": 10, "batch_size": 128, "latent_spec": {"cont": 32}, "epochs": [20, 21], "experiment_name": "2", "lr": [0.0005], "print_loss_every": 50, "dataset": "dsprites"}

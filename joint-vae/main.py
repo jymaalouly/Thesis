@@ -5,16 +5,16 @@ from utils.dataloaders import get_sctterplot_dataloader
 from torch import optim
 
 
-batch_size = 16
+batch_size = 128
 lr = 5e-4
-epochs = 150
-dataset_path = '/content/Thesis/disentanglement_lib/data/real_world_data' 
+epochs = 120
+dataset_path = '/content/Thesis/disentanglement_lib/data/scatterplotimages/all/' 
 # Check for cuda
 use_cuda = torch.cuda.is_available()
 
 # Load data
 data_loader = get_sctterplot_dataloader(batch_size, dataset_path)
-img_size = (3, 64, 64)
+img_size = (1, 64, 64)
 
 # Define latent spec and model
 latent_spec = {'cont': 32}
