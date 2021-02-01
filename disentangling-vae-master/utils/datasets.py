@@ -10,6 +10,7 @@ from skimage.io import imread
 from PIL import Image
 from tqdm import tqdm
 import numpy as np
+import pandas as pd
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -64,7 +65,7 @@ def get_dataloaders(dataset, root=None, shuffle=True, pin_memory=True,
     """
 
     pin_memory = pin_memory and torch.cuda.is_available  # only pin if GPU available
-    scatterplot_data = Scatt('/content/Thesis/disentangling-vae-master/data/og/',
+    scatterplot_data = Scatt('/content/study_chi16/images/',
                               transform=transforms.ToTensor())
       
 
@@ -119,7 +120,10 @@ class DisentangledDataset(Dataset, abc.ABC):
 
 
 class Scatt():
-    img_size = (3, 64, 64)
+    img_size = (1, 64, 64)
+    lat_names = ('Outlying', 'Skewed', 'Clumpy', 'Sparse', 'Striated', 'Convex', 'Skinny', 'Stringy', 'Monotonic')
+
+    lat_sizes = np.array([3, 6, 40, 32, 32, 32, 32, 32, 32,32])
     background_color = COLOUR_BLACK
     def __init__(self, path_to_data, subsample=1, transform=None):
         """
@@ -138,17 +142,20 @@ class Scatt():
         sample_path = self.img_paths[idx]
         if sample_path.endswith('.png'):
           try:
-            sample = imread(sample_path)[:,:,:3]
+            #sample = imread(sample_path)[:,:,:3]
+            sample = imread(sample_path, as_gray=True)
+            sample = sample.reshape(sample.shape + (1,))
             #sample.verify() # verify that it is, in fact an image
+            df = pd.read_csv("/content/study_chi16/scagnostics.csv")
+            label = df.loc[df['file'].isin([sample_path])].columns[-9:]
           except (IOError, SyntaxError) as e:
             print('Bad file:', sample_path)
-          #sample = imread(sample_path, as_gray=True)[:,:,:3]
-          #sample = sample.reshape(sample.shape + (1,))
-
+        print(len(label.to_numpy()))
         if self.transform:
             sample = self.transform(sample)
         # Since there are no labels, we just return 0 for the "label" here
-        return sample, 0  
+        
+        return sample, label.to_numpy()
 
 # HELPERS
 def preprocess(root, size=(64, 64), img_format='JPEG', center_crop=None):
