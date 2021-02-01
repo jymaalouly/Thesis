@@ -64,7 +64,7 @@ def get_dataloaders(dataset, root=None, shuffle=True, pin_memory=True,
     """
 
     pin_memory = pin_memory and torch.cuda.is_available  # only pin if GPU available
-    scatterplot_data = Scatt('/content/Thesis/disentangling-vae-master/data/scatt1/',
+    scatterplot_data = Scatt('/content/Thesis/disentangling-vae-master/data/og/',
                               transform=transforms.ToTensor())
       
 
@@ -119,8 +119,8 @@ class DisentangledDataset(Dataset, abc.ABC):
 
 
 class Scatt():
-    """Fashion Mnist wrapper. Docs: `datasets.FashionMNIST.`"""
     img_size = (3, 64, 64)
+    background_color = COLOUR_BLACK
     def __init__(self, path_to_data, subsample=1, transform=None):
         """
         Parameters
@@ -137,7 +137,12 @@ class Scatt():
     def __getitem__(self, idx):
         sample_path = self.img_paths[idx]
         if sample_path.endswith('.png'):
-          sample = imread(sample_path, as_gray=True)[:,:,:3]
+          try:
+            sample = imread(sample_path)[:,:,:3]
+            #sample.verify() # verify that it is, in fact an image
+          except (IOError, SyntaxError) as e:
+            print('Bad file:', sample_path)
+          #sample = imread(sample_path, as_gray=True)[:,:,:3]
           #sample = sample.reshape(sample.shape + (1,))
 
         if self.transform:
