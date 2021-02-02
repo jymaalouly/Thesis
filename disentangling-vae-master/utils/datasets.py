@@ -65,7 +65,7 @@ def get_dataloaders(dataset, root=None, shuffle=True, pin_memory=True,
     """
 
     pin_memory = pin_memory and torch.cuda.is_available  # only pin if GPU available
-    scatterplot_data = Scatt('/content/study_chi16/images/',
+    scatterplot_data = Scatt('/content/scatterplotimages/all/',
                               transform=transforms.ToTensor())
       
 
@@ -123,7 +123,7 @@ class Scatt():
     img_size = (1, 64, 64)
     lat_names = ('Outlying', 'Skewed', 'Clumpy', 'Sparse', 'Striated', 'Convex', 'Skinny', 'Stringy', 'Monotonic')
 
-    lat_sizes = np.array([3, 6, 40, 32, 32, 32, 32, 32, 32,32])
+    lat_sizes = np.array([1113, 6, 40, 32, 32, 32, 32, 32, 32,32])
     background_color = COLOUR_BLACK
     def __init__(self, path_to_data, subsample=1, transform=None):
         """
@@ -145,17 +145,19 @@ class Scatt():
             #sample = imread(sample_path)[:,:,:3]
             sample = imread(sample_path, as_gray=True)
             sample = sample.reshape(sample.shape + (1,))
-            #sample.verify() # verify that it is, in fact an image
-            df = pd.read_csv("/content/study_chi16/scagnostics.csv")
-            label = df.loc[df['file'].isin([sample_path])].columns[-9:]
+            #sample_path_split = sample_path.split('/')
+            #df = pd.read_csv("/content/study_chi16/scagnostics.csv")
+            #label = df.loc[df['file'] == sample_path_split[-1]][df.columns[-9:]]
+            
           except (IOError, SyntaxError) as e:
             print('Bad file:', sample_path)
-        print(len(label.to_numpy()))
         if self.transform:
             sample = self.transform(sample)
+            #label = label.to_numpy().astype(np.float32)
+            #label = torch.tensor(label)
         # Since there are no labels, we just return 0 for the "label" here
         
-        return sample, label.to_numpy()
+        return sample, 0
 
 # HELPERS
 def preprocess(root, size=(64, 64), img_format='JPEG', center_crop=None):
