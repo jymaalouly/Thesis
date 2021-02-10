@@ -48,7 +48,8 @@ class Scatt(ground_truth_data.GroundTruthData):
     for img in sorted(os.listdir(SCATT_PATH + '/scatt')):
         if img.endswith('.png'):
             count += 1
-            if count <= int(180000):
+            if int(count) <= int(180000):
+              print('test')
               img_array = cv2.imread(os.path.join((SCATT_PATH + '/scatt'),img))# convert to array
               join.append(img_array)  # add this to our training_data
         
