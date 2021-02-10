@@ -1,11 +1,12 @@
 import os
 import pandas as pd
 import math
-
 graph_features = pd.DataFrame(columns=['pos','size' , 'shape','color'])
 
 counter = 0
 pos = 0 
+
+
 for index1, filename in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/data/rdataset/scatt'))): 
   
   x = filename.split('-')
