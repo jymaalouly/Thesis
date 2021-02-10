@@ -55,7 +55,7 @@ class Scatt(ground_truth_data.GroundTruthData):
     images = np.array(join)
     labels = genfromtxt(SCATT_PATH + '/output.csv', delimiter=',')
     self.images = (
-        images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
+        images.reshape([180000, 64, 64, 3]).astype(np.float32) / 255.)
     
     features = labels.reshape([count, 4])
     features = features[:180000, :] 
