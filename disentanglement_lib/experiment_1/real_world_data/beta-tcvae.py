@@ -17,10 +17,10 @@ import os
 from numpy import loadtxt
 
 
-path = "/content/Thesis/disentanglement_lib/experiment_1/synthetic_data"
+path = "/content/Thesis/disentanglement_lib/experiment_1/real_world_data"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "beta_tc_vae_300000")
+path_vae = os.path.join(base_path, "rscag_beta_tc_vae_300000")
 
 overwrite = True
 

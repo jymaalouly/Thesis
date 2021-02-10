@@ -20,7 +20,7 @@ from numpy import loadtxt
 path = "/content/Thesis/disentanglement_lib/experiment_1/real_world_data"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "factor_vae_300000")
+path_vae = os.path.join(base_path, "rscag_factor_vae_300000")
 
 overwrite = True
 
@@ -30,7 +30,7 @@ path = os.path.join(path_vae, "model")
 
 gin_bindings = [
 "model.model = @factor_vae()",
-"factor_vae.gamma =100" ,
+"factor_vae.gamma =40" ,
 "discriminator.discriminator_fn = @fc_discriminator" ,
 "discriminator_optimizer.optimizer_fn = @AdamOptimizer"
 ]
