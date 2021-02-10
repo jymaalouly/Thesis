@@ -8,11 +8,12 @@ pos = 0
 
 
 for index1, filename in enumerate(sorted(os.listdir('/content/Thesis/disentanglement_lib/data/rdataset/scatt'))): 
+  os.rename('/content/Thesis/disentanglement_lib/data/rdataset/scatt/'+filename,'/content/Thesis/disentanglement_lib/data/rdataset/scatt/'+filename+'.png')
+
+  #x = filename.split('-')
+  #y = x[6].split('.')
+  #graph_features = graph_features.append( {'pos': int(x[0]) ,'size': int(x[2]) ,'shape': int(x[4]), 'color' : y[0]}, ignore_index=True)
   
-  x = filename.split('-')
-  y = x[6].split('.')
-  graph_features = graph_features.append( {'pos': int(x[0]) ,'size': int(x[2]) ,'shape': int(x[4]), 'color' : y[0]}, ignore_index=True)
-  
-print(graph_features)
-graph_features.to_csv('/content/Thesis/disentanglement_lib/data/rdataset/output.csv',index = False, header=False)
-print(pos)
+#print(graph_features)
+#graph_features.to_csv('/content/Thesis/disentanglement_lib/data/rdataset/output.csv',index = False, header=False)
+#print(pos)
