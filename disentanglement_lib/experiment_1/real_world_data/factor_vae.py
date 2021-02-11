@@ -20,7 +20,7 @@ from numpy import loadtxt
 path = "/content/Thesis/disentanglement_lib/experiment_1/real_world_data"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "rscag_factor_vae_300000")
+path_vae = os.path.join(base_path, "scatt_factor_vae_300000")
 
 overwrite = True
 
