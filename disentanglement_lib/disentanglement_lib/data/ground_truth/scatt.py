@@ -27,7 +27,7 @@ import tensorflow.compat.v1 as tf
 from numpy import genfromtxt
 
 
-SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/data/rdataset")
+SCATT_PATH = os.path.join("/content/Thesis/disentanglement_lib/scatt")
 
 
 
@@ -48,18 +48,17 @@ class Scatt(ground_truth_data.GroundTruthData):
     for img in sorted(os.listdir(SCATT_PATH + '/scatt')):
         if img.endswith('.png'):
             count += 1
-            if count <= 180000:
-              img_array = cv2.imread(os.path.join((SCATT_PATH + '/scatt'),img))# convert to array
-              join.append(img_array)  # add this to our training_data
+            img_array = cv2.imread(os.path.join((SCATT_PATH + '/scatt'),img))# convert to array
+            join.append(img_array)  # add this to our training_data
         
     images = np.array(join)
     labels = genfromtxt(SCATT_PATH + '/output.csv', delimiter=',')
     self.images = (
-        images.reshape([180000, 64, 64, 3]).astype(np.float32) / 255.)
+        images.reshape([count, 64, 64, 3]).astype(np.float32) / 255.)
     
     features = labels.reshape([count, 4])
-    features = features[:180000, :] 
-    self.factor_sizes = [1000 , 6, 6, 5]
+
+    self.factor_sizes = [314 , 6, 6, 5]
     self.latent_factor_indices = list(range(4))
     self.num_total_factors = features.shape[1]
     self.index = util.StateSpaceAtomIndex(self.factor_sizes, features)
