@@ -1,0 +1,9 @@
+{
+  "kl_loss": 13.333786010742188,
+  "loss": 596.442138671875,
+  "reconstruction_loss": 571.0552368164062,
+  "regularizer": 25.387563705444336,
+  "global_step": 300002,
+  "elapsed_time": 2334.481486558914,
+  "uuid": "55e648b4-c782-4df8-a804-e01fe7fcfd62"
+}

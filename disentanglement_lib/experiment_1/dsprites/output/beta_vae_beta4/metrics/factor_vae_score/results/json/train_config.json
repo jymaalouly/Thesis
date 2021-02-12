@@ -17,7 +17,7 @@
   "model.model_num": "None",
   "model.name": "''",
   "model.random_seed": "0",
-  "model.training_steps": "100000",
+  "model.training_steps": "300000",
   "reconstruction_loss.activation": "'logits'",
   "reconstruction_loss.loss_fn": "@bernoulli_loss",
   "vae.beta": "4",

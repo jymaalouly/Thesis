@@ -20,7 +20,7 @@ from numpy import loadtxt
 path = "/content/Thesis/disentanglement_lib/experiment_1/initial_data"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "beta_vae_100000")
+path_vae = os.path.join(base_path, "beta_vae_300000")
 
 overwrite = True
 
@@ -31,12 +31,12 @@ train.train_with_gin(path, True, model)
 
 
 
+
 representation_path = os.path.join(path_vae, "representation")
 model_path = os.path.join(path_vae, "model")
 postprocess_gin = ["postprocess.gin"]  # This contains the settings.
 # postprocess.postprocess_with_gin defines the standard extraction protocol.
 postprocess.postprocess_with_gin(model_path, representation_path, overwrite,postprocess_gin)
-
 
 # 4. Compute the Mutual Information Gap (already implemented) for both models.
 # ------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ gin_bindings = [
     "evaluation.evaluation_fn = @mig",
     "dataset.name='auto'",
     "evaluation.random_seed = 0",
-    "mig.num_train=1000",
+    "mig.num_train=10000",
     "discretizer.discretizer_fn = @histogram_discretizer",
     "discretizer.num_bins = 20"
 ]
@@ -66,12 +66,31 @@ evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bind
 
 
 gin_bindings = [
+    "evaluation.evaluation_fn = @factor_vae_score",
+    "dataset.name='auto'",
+    "evaluation.random_seed = 0",
+    "factor_vae_score.batch_size=32",
+    "factor_vae_score.num_train=10000",
+    "factor_vae_score.num_variance_estimate=64",
+    "factor_vae_score.num_eval=5000",
+    "discretizer.discretizer_fn = @histogram_discretizer",
+    "discretizer.num_bins = 20"
+]
+
+result_path = os.path.join(path_vae, "metrics", "factor_vae_score")
+if not gfile.IsDirectory(result_path):
+    gfile.MakeDirs(result_path)
+representation_path = os.path.join(path_vae, "representation")
+evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
+
+
+gin_bindings = [
     "evaluation.evaluation_fn = @beta_vae_sklearn",
     "dataset.name='auto'",
     "evaluation.random_seed = 0",
     "beta_vae_sklearn.batch_size=32",
-    "beta_vae_sklearn.num_train=1000",
-    "beta_vae_sklearn.num_eval=1000",
+    "beta_vae_sklearn.num_train=10000",
+    "beta_vae_sklearn.num_eval=5000",
     "discretizer.discretizer_fn = @histogram_discretizer",
     "discretizer.num_bins = 20"
 ]
@@ -83,38 +102,6 @@ representation_path = os.path.join(path_vae, "representation")
 evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
 
 
-gin_bindings = [
-    "evaluation.evaluation_fn = @sap_score",
-    "dataset.name='auto'",
-    "sap_score.num_train=1000",
-    "evaluation.random_seed=1",
-    "sap_score.num_test=750",
-    "sap_score.continuous_factors = False",
-    "discretizer.discretizer_fn = @histogram_discretizer",
-    "discretizer.num_bins = 20"
-]
-
-result_path = os.path.join(path_vae, "metrics", "sap_score")
-if not gfile.IsDirectory(result_path):
-    gfile.MakeDirs(result_path)
-representation_path = os.path.join(path_vae, "representation")
-evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
-
-gin_bindings = [
-    "evaluation.evaluation_fn = @unsupervised_metrics",
-    "evaluation.random_seed=1",
-    "dataset.name='auto'",
-    "unsupervised_metrics.num_train=1000",
-    "discretizer.discretizer_fn = @histogram_discretizer",
-    "discretizer.num_bins = 20"
-]
-
-result_path = os.path.join(path_vae, "metrics", "unsupervised_metrics")
-if not gfile.IsDirectory(result_path):
-    gfile.MakeDirs(result_path)
-representation_path = os.path.join(path_vae, "representation")
-evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bindings=gin_bindings)
-
 
 # 6. Aggregate the results.
 # ------------------------------------------------------------------------------
@@ -122,7 +109,7 @@ evaluate.evaluate_with_gin(representation_path, result_path, overwrite, gin_bind
 # can aggregate all the results using the following command.
 pattern = os.path.join(base_path,
                        "*/metrics/*/results/aggregate/evaluation.json")
-results_path = os.path.join(base_path, "results.json")
+results_path = os.path.join(path_vae, "results.json")
 aggregate_results.aggregate_results_to_json(
     pattern, results_path)
 
@@ -136,3 +123,5 @@ aggregate_results.aggregate_results_to_json(
 # metric always returns 1.
 model_results = aggregate_results.load_aggregated_json_results(results_path)
 print(model_results)
+
+
