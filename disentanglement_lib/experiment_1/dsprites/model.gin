@@ -18,7 +18,7 @@ dataset.name = "dsprites_noshape"
 model.batch_size = 16
 model.model = @vae()
 model.random_seed = 0
-vae.beta = 1
+vae.beta = 16
 encoder.num_latent = 10
 vae_optimizer.optimizer_fn = @AdamOptimizer
 # We train for only 5 steps, in practice we train for 300000 steps.
