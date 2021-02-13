@@ -20,7 +20,7 @@ from numpy import loadtxt
 path = "/content/Thesis/disentanglement_lib/experiment_1/synthetic_data"
 
 base_path = os.path.join(path, "output")
-path_vae = os.path.join(base_path, "beta_vae_300000")
+path_vae = os.path.join(base_path, "factor_vae_16")
 
 overwrite = True
 
