@@ -1,8 +1,0 @@
-{
-  "custom_metric.batch_size": "16",
-  "custom_metric.num_train": "100",
-  "dataset.name": "'scatt'",
-  "evaluation.evaluation_fn": "@custom_metric",
-  "evaluation.name": "''",
-  "evaluation.random_seed": "0"
-}

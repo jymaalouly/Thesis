@@ -1,5 +1,0 @@
-torch
-torchvision==0.2.0
-scipy
-imageio
-scikit-image
