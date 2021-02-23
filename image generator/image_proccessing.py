@@ -39,7 +39,7 @@ class Generate():
             x0,x1 = ax.get_xlim();
             y0,y1 = ax.get_ylim();
             ax.set_aspect(abs(x1-x0)/abs(y1-y0));
-            fig.savefig("C:/Users/Tasiko/Thesis/image generator/temp/generated_images/temp_" + str(num_image) + ".png", dpi=100);
+            fig.savefig(os.getcwd()+"/temp/generated_images/temp_" + str(num_image) + ".png", dpi=100);
             plt.close('all')
         
     def selection(self,value):

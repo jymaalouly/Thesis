@@ -39,18 +39,16 @@ def encode_button(w):
     image.create_reconstrution(slid)
     result = None
     
-    #os.remove("C:/Users/Tasiko/Thesis/image generator/temp/temp_reconstruction/temp_1.png")
-            
     while result is None:
         try:
-            img3 = ImageTk.PhotoImage(resize('C:/Users/Tasiko/Thesis/image generator/temp/temp_reconstruction/temp_1.png'))
+            img3 = ImageTk.PhotoImage(resize(os.getcwd()+'/temp/temp_reconstruction/temp_1.png'))
             panel_2.configure(image=img3)
             panel_2.image = img3
             result = 1
         except:
              pass
 def generate_button():
-    Generate('C:/Users/Tasiko/Thesis/image generator/temp/temp_reconstruction/temp_1.png',num_images.get(),num_points.get())
+    Generate(os.getcwd()+'/temp/temp_reconstruction/temp_1.png',num_images.get(),num_points.get())
     
 def resize(path):
     image = Image.open(path)
@@ -67,7 +65,7 @@ folder_path = StringVar()
 image = model.Traversal() 
 slid = makeslider(root, fields)
 try:
-    img = ImageTk.PhotoImage(resize('C:/Users/Tasiko/Thesis/image generator/image_not_available.png'))
+    img = ImageTk.PhotoImage(resize(os.getcwd()+'/image_not_available.png'))
     panel = tk.Label(root, image=img)
     panel.grid(column=0,row=1,padx = 10 ,pady=10,sticky='nesw')
     
